@@ -1,0 +1,42 @@
+<form [formGroup]="filterForm">
+  <mat-form-field class="title-input">
+    <mat-label>Find book</mat-label>
+    <input matInput placeholder="book title or description" formControlName="title">
+  </mat-form-field>
+
+  <label>Number of pages</label>
+  <mat-form-field class="pages-number">
+    <mat-label>From</mat-label>
+    <input matInput formControlName="pagesFrom"
+      type="number" min="1">
+  </mat-form-field>
+
+  <mat-form-field class="pages-number">
+    <mat-label>To</mat-label>
+    <input matInput formControlName="pagesTo"
+      type="number" min="1">
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field>
+    <mat-label>Authors</mat-label>
+    <mat-select formControlName="authors" multiple>
+      <mat-option *ngFor="let author of authorList" [value]="author">{{ author }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Languages</mat-label>
+    <mat-select formControlName="languages" multiple>
+      <mat-option *ngFor="let language of languageOptions" [value]="language">{{ language }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Genres</mat-label>
+    <mat-select formControlName="genres" multiple>
+      <mat-option *ngFor="let genre of genreOptions" [value]="genre">{{ genre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

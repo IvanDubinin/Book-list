@@ -1,0 +1,39 @@
+<h1 mat-headline-1>Author List</h1>
+<div class="author-creator">
+  <button *ngIf="!newAuthorFormVisible" mat-raised-button (click)="toggleNewAuthorForm()">New Author</button>
+  <form *ngIf="newAuthorFormVisible" [formGroup]="newAuthorForm">
+    <mat-form-field class="title-input">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Author name" formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="title-input">
+      <mat-label>Surname</mat-label>
+      <input matInput placeholder="Author surname" formControlName="surname">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button (click)="addNewAuthor()" [disabled]="addAuthorButtonDisabled">New Author</button>
+    <button mat-raised-button (click)="toggleNewAuthorForm()">Cancel</button>
+  </form>
+</div>
+<mat-card *ngFor="let author of authorList">
+  <mat-card-content *ngIf="editingAuthorId !== author.id; else editAuthorFormTemplate">
+    {{ author.name + ' ' + author.surname }}
+    <button mat-raised-button (click)="editAuthorInfo(author)" class="edit-author-info">Edit</button>
+  </mat-card-content>
+
+  <ng-template #editAuthorFormTemplate>
+    <form [formGroup]="editAuthorForm">
+      <mat-form-field class="title-input">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field class="title-input">
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="surname">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button (click)="saveAuthorInfo(author.id)" [disabled]="editAuthorButtonDisabled">Save</button>
+      <button mat-raised-button (click)="cancelAuthorEditing()">Cancel</button>
+    </form>
+  </ng-template>
+</mat-card>

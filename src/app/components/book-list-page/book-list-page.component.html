@@ -1,0 +1,10 @@
+<h1 mat-headline-1>Book List</h1>
+<div class="links">
+  <a mat-raised-button href="/add-book">New Book</a>
+  <a mat-raised-button href="/author-list">Author List</a>
+</div>
+<app-book-list-filters 
+  (filterBooksByTitle)="onBookFilter($event)"
+  [authorList]="authorList">
+</app-book-list-filters>
+<app-book-list [bookList]="bookList"></app-book-list>
